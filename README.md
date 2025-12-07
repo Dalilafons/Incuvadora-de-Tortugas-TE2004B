@@ -1,8 +1,9 @@
-# 🐢 Prototipo de Incubadora Automatizada de Huevos de Tortuga
+# 🐢 Tec Robotics: Incubadora Inteligente de Tortugas Marinas
 
-Este repositorio contiene la documentación y el desarrollo de la **Actividad 5: Integración Inicial del Prototipo y Configuración de la Red MQTT**. El proyecto forma parte de la materia "Diseño de sistemas embebidos avanzados" (Gpo 601) del Tecnológico de Monterrey.
+Este repositorio contiene la documentación final y el código fuente del proyecto **"Incubadora de Tortugas"**. Desarrollado como parte de la materia "Diseño de sistemas embebidos avanzados" (Gpo 601) del Tecnológico de Monterrey, este prototipo busca mitigar los efectos del cambio climático y el saqueo furtivo en la tortuga Golfina (*Lepidochelys olivacea*).
 
-**Fecha:** 22 de Octubre de 2025
+**Estado:** Finalizado ✅
+**Fecha:** Diciembre 2025
 
 ## 🧑‍💻 Equipo de Desarrollo
 
@@ -13,68 +14,59 @@ Este repositorio contiene la documentación y el desarrollo de la **Actividad 5:
 
 **Profesor:** Josué González García
 
-## 🎯 Objetivo del Proyecto
+## 🎯 Objetivo y Misión
 
-El objetivo principal es documentar el prototipo inicial de una incubadora automatizada diseñada para huevos de tortuga.
-Este avance cubre tanto el ensamblaje físico del hardware como la configuración de la red de comunicación MQTT para el control y monitoreo remotos.
+El objetivo principal es desarrollar un sistema robótico que aumente la tasa de eclosión y supervivencia de los embriones. El sistema monitorea variables críticas (temperatura y humedad) y realiza procesos de **ovoscopia automatizada** sin contacto humano, alineándose con los **ODS 13 (Acción por el Clima)** y **ODS 14 (Vida Submarina)**.
 
-## 🛠️ Componentes y Ensamblaje
+## 🛠️ Arquitectura de Hardware
 
-El sistema está centralizado en un microcontrolador **ESP32** que se conecta con los siguientes componentes:
+El sistema integra dos microcontroladores principales y diversos periféricos:
 
-* **Motor DC:** Controlado a través de un *driver* L293D.
-* **Servomotores (x2):** Conectados directamente a pines del ESP32 para movimientos de precisión.
-* **Módulos de Sensor IR (x2):** Utilizados para detección, conectados a pines digitales.
-* **Sensores de Temperatura:**
-    * Sensor DHT11.
-    * Sonda DS18B20.
-* **Relé (Relay):** Conectado a una fuente de 32V y controlado por el ESP32 para gestionar la...
-* **Luz de 50W:** Conectada al pin común del relé.
+### Microcontroladores
+* **ESP32 (Main):** Coordina los sensores, el movimiento del robot y la comunicación WiFi/MQTT.
+* **ESP32-CAM:** Dedicada exclusivamente a la captura de imágenes para la ovoscopia y documentación visual del embrión.
 
-Puedes consultar el diagrama de conexión completo en el documento (Página 4).
+### Actuadores y Sensores
+* **Motor DC + Driver L293D:** Controla el desplazamiento longitudinal del robot sobre el riel para visitar cada sector.
+* **Servomotores:** Manejan el brazo robótico (Mano) para posicionar la cámara y los sensores sobre el huevo.
+* **Sensores IR:** Detectan la posición exacta del brazo en cada uno de los 3 sectores.
+* **Sensor MLX90614:** Mide la temperatura del huevo **sin contacto**.
+* **Sensor DHT11:** Monitorea la temperatura y humedad ambiental dentro de la incubadora.
+* **Iluminación:** Lámpara LED controlada por relé para realizar la ovoscopia (iluminación del huevo desde abajo).
 
-## ☁️ Arquitectura de Red MQTT
+## ☁️ Software e Interfaces de Usuario
 
-El prototipo utiliza el protocolo MQTT para establecer una comunicación bidireccional entre el hardware (ESP32) y una interfaz de usuario (Node-RED).
+El proyecto implementa una arquitectura IoT híbrida para control y monitoreo:
 
-* **Broker:** Se utiliza **Mosquitto** como broker MQTT, corriendo de forma local (`localhost`) en una laptop.
-* **Hardware (Cliente MQTT):** El **ESP32** se conecta a la misma red WiFi y al broker.
-    * **Publica:** Los datos del sensor de temperatura.
-    * **Suscribe:** A los tópicos de control para recibir órdenes.
-* **Interfaz de Usuario (Cliente MQTT):** **Node-RED** sirve como panel de control.
-    * **Publica:** Comandos para activar los actuadores (motores, led).
-    * **Suscribe:** A los tópicos de telemetría para mostrar los datos, como la temperatura en un medidor *gauge*.
+### 1. Interfaz Web (Usuario Final)
+Página web alojada directamente en el ESP32.
+* **Panel de Control (Modo Oscuro):** Visualización en tiempo real de la temperatura de cada huevo (Huevo 3, 4, 5, etc.).
+* **Automatización:** Permite programar la hora de inicio del ciclo automático.
+* **Registros:** Tabla histórica con fechas, secciones revisadas y enlaces a las fotos.
 
-### Tópicos MQTT
+### 2. Dashboard Node-RED (Técnico)
+Utilizado para mantenimiento y control manual vía MQTT.
+* **Controles:** Botones para cada servomotor y dirección del motor DC.
+* **Telemetría:** Gráficos tipo *gauge* para temperatura ambiente, humedad y temperatura del objeto.
 
-#### Tópicos de Control (Node-RED → ESP32)
+### 3. Integración en la Nube (Google)
+* **Google Drive:** Almacenamiento automático de las fotografías capturadas por la ESP32-CAM.
+* **Gmail:** Envío automático de reportes PDF con el estado de la incubadora.
 
-* `led`: Envía mensajes `ON` y `OFF`.
-* `Servo1`: Controla el primer servomotor (brazo robótico) con mensajes `SERVO 1_L` y `SERVO 1_R`.
-* `Servo2-UP`: Mueve el segundo servomotor hacia arriba.
-* `Servo2-DOWN`: Mueve el segundo servomotor hacia abajo.
-* `MotorA`: Activa el motor DC hacia adelante (`MOTOR_ADELANTE`).
-* `MotorR`: Activa el motor DC en reversa (`MOTOR_REVERSA`).
+## 🔄 Funcionamiento del Sistema
 
-#### Tópicos de Telemetría (ESP32 → Node-RED)
+El robot opera mediante un ciclo automático de 4 fases:
+1.  **Fase 1:** Desplazamiento y revisión del primer sector (Sensores + Foto).
+2.  **Fase 2:** Desplazamiento al segundo sector.
+3.  **Fase 3:** Desplazamiento al tercer sector.
+4.  **Fase 4:** Retorno a la posición inicial (Home).
 
-* `encuvadora/temperatura`: El ESP32 lee el sensor cada 5 segundos y publica el valor en este tópico.
+## 📊 Resultados
 
-## 📊 Dashboard (Node-RED)
+El sistema logró:
+* Validar la telemetría en tiempo real con precisión (ej. lecturas estables de ~23°C - 24°C).
+* Generar una bitácora digital accesible desde la web con enlaces directos a las evidencias fotográficas.
+* Controlar la temperatura y humedad para evitar el sesgo de sexo en las crías debido a temperaturas extremas.
 
-Se creó un dashboard en Node-RED llamado "Encuvadora" que presenta la siguiente interfaz:
-
-* **Sensores:** Un medidor *gauge* para la "Temperatura" y botones "ON"/"OFF".
-* **SERVOS:** Botones para controlar ambos servomotores (SERVO1 L/R, SERVO2 UP/DOWN).
-* **MOTOR DC:** Botones para "MOTOR ADELANTE" y "MOTOR REVERSA".
-
-## 🚀 Planes de Integración Futura
-
-El prototipo actual es la base para las siguientes mejoras planificadas:
-
-1.  **Riel Lineal:** Implementar un riel sobre el cual se desplazará el motor DC, usando el sensor IR para posicionarse frente a cada huevo.
-2.  **Estaciones Fijas:** Reemplazar las bases de cartón por estaciones de incubación fijas, cada una con su propia luz de ovoscopia en la parte inferior.
-3.  **Mano Robótica:** El módulo que se moverá en el riel será una mano robótica.
-4.  **Visión Artificial:** Se integrará una **ESP32-CAM** para capturar imágenes del interior de los huevos, aprovechando la luz de ovoscopia inferior.
-5.  **Medición de Contacto:** La sonda DS18B20 se usará para medir la temperatura superficial de cada huevo al hacer contacto.
-6.  **Inspección 180°:** El servomotor de la mano robótica le permitirá girar 180° para inspeccionar filas de huevos a ambos lados del riel.
+---
+*Tecnológico de Monterrey - Ingeniería en Robótica y Sistemas Digitales*
