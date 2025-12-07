@@ -1,4 +1,4 @@
-# 🐢 Tec Robotics: Incubadora Inteligente de Tortugas Marinas
+# 🐢 Tec Robotics: Incubadora Inteligente de Tortugas 
 
 Este repositorio contiene la documentación final y el código fuente del proyecto **"Incubadora de Tortugas"**. Desarrollado como parte de la materia "Diseño de sistemas embebidos avanzados" (Gpo 601) del Tecnológico de Monterrey, este prototipo busca mitigar los efectos del cambio climático y el saqueo furtivo en la tortuga Golfina (*Lepidochelys olivacea*).
 
@@ -40,8 +40,9 @@ El proyecto implementa una arquitectura IoT híbrida para control y monitoreo:
 
 ### 1. Interfaz Web (Usuario Final)
 Página web alojada directamente en el ESP32.
-* **Panel de Control (Modo Oscuro):** Visualización en tiempo real de la temperatura de cada huevo (Huevo 3, 4, 5, etc.).
+* **Panel de Control:** Visualización en tiempo real de la temperatura de cada huevo (Huevo 3, 4, 5, etc.).
 * **Automatización:** Permite programar la hora de inicio del ciclo automático.
+* **Manual:** Permite elegir la selección a monitorear.
 * **Registros:** Tabla histórica con fechas, secciones revisadas y enlaces a las fotos.
 
 ### 2. Dashboard Node-RED (Técnico)
