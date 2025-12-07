@@ -1,0 +1,327 @@
+body {
+
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    padding-top: 150px; 
+    align-items: center;
+    background-color: #000;
+    background-image: url('fondo1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh; 
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Incuvadora */
+.tablero {
+    width: 90%;
+    max-width: 900px; 
+    padding: 40px;
+    display: flex;
+    justify-content: center; 
+    gap: 200px; 
+    align-items: center;
+    background: rgba(75, 160, 190, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba(45, 166, 206, 0.726);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.grupo-cuadrado {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+}
+
+.circulo {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #5c7c9e; 
+    border-radius: 50%; 
+    background-color: rgba(220, 230, 240, 0.8); 
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); 
+}
+
+.grupo-vertical {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;          
+}
+
+.c-rojo {
+    background-color: #ff6b6b;
+    border-color: #c92a2a; 
+}
+
+.c-verde {
+    background-color: #69db7c;
+    border-color: #2b8a3e;
+}
+
+.c-gris {
+    background-color: #a7a4a4;
+    border-color: #545855;
+}
+
+/* --- CONTENEDOR DE LOS BOTONES --- */
+.contenedor-botones {
+    margin-top: 50px; 
+    display: flex;
+    gap: 30px; 
+}
+
+/* --- ESTILO DE CADA BOTÓN --- */
+.boton {
+    padding: 15px 40px; 
+    font-size: 20px;   
+    font-weight: bold;
+    color: #333;      
+    background-color: #e8f1f8; 
+    border: 2px solid #8eb6d9; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.boton:hover {
+    background-color: #d0e1f0; 
+    transform: scale(1.05);  
+    border-color: #2b6cb0;
+}
+
+.boton:active {
+    transform: scale(0.95);
+}
+
+
+/* --- TÍTULO EFECTO AGUA (PANEL DE CONTROL) --- */
+.titulo-agua {
+    display: flex;              
+    gap: 15px;                  
+    justify-content: center;    
+    margin-bottom: 40px;      
+    position: relative;
+    z-index: 10;
+}
+
+.titulo-agua .word {
+    position: relative;
+}
+
+.titulo-agua .word h2 {
+    font-size: 6rem;
+    font-weight: 900; 
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+}
+
+.titulo-agua .word h2:nth-child(1) {
+    position: relative;
+    color: transparent;
+    -webkit-text-stroke: 2px #03a9f4; 
+}
+
+.titulo-agua .word h2:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #03a9f4;
+    animation: animate-agua 4s ease-in-out infinite; 
+}
+
+@keyframes animate-agua {
+    0%, 100% {
+        clip-path: polygon(0% 45%, 16% 44%, 33% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+    }
+    50% {
+        clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+    }
+}
+
+
+.btn-neon {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px; 
+    color: #03a9f4;    
+    background: transparent; 
+    border: none;
+    cursor: pointer;
+    font-family: sans-serif; 
+    text-transform: uppercase;
+    text-decoration: none; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    margin: 10px; 
+}
+
+.btn-neon:hover {
+    background: #03a9f4;
+    color: #ffffff; 
+    box-shadow: 0 0 5px #03a9f4, 
+                0 0 25px #03a9f4, 
+                0 0 50px #03a9f4, 
+                0 0 200px #03a9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.btn-neon span {
+    position: absolute;
+    display: block;
+}
+
+
+.btn-neon span:nth-child(1) {
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #03a9f4);
+    animation: animate1 4s linear infinite;
+}
+
+@keyframes animate1 {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+.btn-neon span:nth-child(2) {
+    top: -100%; right: 0; width: 2px; height: 100%;
+    background: linear-gradient(180deg, transparent, #03a9f4);
+    animation: animate2 4s linear infinite;
+    animation-delay: 1s;
+}
+@keyframes animate2 {
+    0% { top: -100%; }
+    50%, 100% { top: 100%; }
+}
+
+.btn-neon span:nth-child(3) {
+    bottom: 0; right: 0; width: 100%; height: 2px;
+    background: linear-gradient(270deg, transparent, #03a9f4);
+    animation: animate3 4s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes animate3 {
+    0% { right: -100%; }
+    50%, 100% { right: 100%; }
+}
+
+.btn-neon span:nth-child(4) {
+    bottom: -100%; left: 0; width: 2px; height: 100%;
+    background: linear-gradient(360deg, transparent, #03a9f4);
+    animation: animate4 4s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes animate4 {
+    0% { bottom: -100%; }
+    50%, 100% { bottom: 100%; }
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+    background: rgba(20, 20, 30, 0.85) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(3, 169, 244, 0.3); 
+    box-shadow: 0 0 20px rgba(3, 169, 244, 0.2); 
+}
+
+.glow-on-hover {
+    width: 220px;
+    height: 60px;
+    font-size: 16px; 
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fff; 
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    background: rgba(75, 160, 190, 0.15); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(45, 166, 206, 0.5); 
+    border-radius: 30px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
+    transition: all 0.4s ease; 
+}
+
+.glow-on-hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 30px; 
+    padding: 3px;
+    
+    /* El degradado */
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    animation: glowing 20s linear infinite;
+    
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) content-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0; 
+    transition: opacity 0.4s ease; 
+    pointer-events: none; 
+}
+
+.glow-on-hover:hover {
+    transform: scale(1.05);
+    border-color: transparent; 
+    background: rgba(75, 160, 190, 0.25);
+    box-shadow: 0 0 20px rgba(130, 200, 255, 0.4);
+}
+
+.glow-on-hover:hover::before {
+    opacity: 1; 
+}
+
+.glow-on-hover:active {
+    transform: scale(0.95);
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.contenedor-volver {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+}
+
+div:where(.swal2-container) .swal2-popup {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+div:where(.swal2-container) .swal2-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 600;
+}
+
+div:where(.swal2-container) input.swal2-input {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.2rem !important;
+}
+
+div:where(.swal2-container) .swal2-styled {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400;
+    letter-spacing: 1px;
+}

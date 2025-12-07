@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+
+    <div class="content">
+        <div class="word">
+            <h2>Manual</h2>
+            <h2>Manual</h2>
+        </div>
+
+        <div class="panel-dividido">
+            
+            <div id="lista-huevos" class="caja-cristal columna-lista">
+                <h3 id="mensaje-estado" style="color: #aaa; font-weight: 300;">Selecciona sección...</h3>
+
+                <div id="contenedor-resultados" style="display: none; width: 100%;">
+                    
+                    <div id="fila-huevo-1" class="fila-dato" style="display: none;"><span>🥚 Huevo 1</span> <span id="valor-huevo-1" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-2" class="fila-dato" style="display: none;"><span>🥚 Huevo 2</span> <span id="valor-huevo-2" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-3" class="fila-dato" style="display: none;"><span>🥚 Huevo 3</span> <span id="valor-huevo-3" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-4" class="fila-dato" style="display: none;"><span>🥚 Huevo 4</span> <span id="valor-huevo-4" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-5" class="fila-dato" style="display: none;"><span>🥚 Huevo 5</span> <span id="valor-huevo-5" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-6" class="fila-dato" style="display: none;"><span>🥚 Huevo 6</span> <span id="valor-huevo-6" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-7" class="fila-dato" style="display: none;"><span>🥚 Huevo 7</span> <span id="valor-huevo-7" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-8" class="fila-dato" style="display: none;"><span>🥚 Huevo 8</span> <span id="valor-huevo-8" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-9" class="fila-dato" style="display: none;"><span>🥚 Huevo 9</span> <span id="valor-huevo-9" class="temp-valor">--</span></div>
+                    <div id="fila-huevo-10" class="fila-dato" style="display: none;"><span>🥚 Huevo 10</span> <span id="valor-huevo-10" class="temp-valor">--</span></div>
+
+                    <div class="bloque-drive">
+                        <span class="texto-exito">✅ Datos actualizados</span>
+                        <br>
+                        <a id="link-drive" href="#" target="_blank" class="boton-drive">📂 Ver Drive</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="caja-cristal columna-widgets">
+                <h3 style="margin-bottom: 20px; color: #fff;">INCUBADORA</h3>
+                
+                <div class="widget-circular">
+                    <div class="circulo-gauge c-temp">
+                        <div class="interior">
+                            <span id="widget-temp" class="dato-grande">--</span>
+                            <span class="unidad">°C</span>
+                        </div>
+                    </div>
+                    <p>Temperatura</p>
+                </div>
+
+                <div class="widget-circular">
+                    <div class="circulo-gauge c-hum">
+                        <div class="interior">
+                            <span id="widget-hum" class="dato-grande">--</span>
+                            <span class="unidad">%</span>
+                        </div>
+                    </div>
+                    <p>Humedad</p>
+                </div>
+            </div>
+
+        </div>
+    </div> 
+
+    <div class="columna-derecha">
+        
+        <div class="contenedor-botones">
+            <button class="btn-neon" onclick="cambiarNombre('SECCIÓN 1')">
+                <span></span><span></span><span></span><span></span>
+                SECCIÓN 1
+            </button>
+
+            <button class="btn-neon" onclick="cambiarNombre('SECCIÓN 2')">
+                <span></span><span></span><span></span><span></span>
+                SECCIÓN 2
+            </button>
+
+            <button class="btn-neon" onclick="cambiarNombre('SECCIÓN 3')">
+                <span></span><span></span><span></span><span></span>
+                SECCIÓN 3
+            </button>
+        </div>
+
+        <div class="tablero">
+            <h2 id="titulo-tablero" class="titulo-tablero">🐢</h2>
+            
+            <div class="grupo-cuadrado">
+                <div id="circulo-0" class="circulo"></div>
+                <div id="circulo-1" class="circulo"></div>
+                <div id="circulo-2" class="circulo"></div>
+                <div id="circulo-3" class="circulo"></div>
+            </div>
+        </div>
+
+        <div class="contenedor-volver">
+            <button class="glow-on-hover" onclick="location.href='pagina2.html'">
+                VOLVER
+            </button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

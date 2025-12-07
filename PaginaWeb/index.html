@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incubadora</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="intro-overlay" id="introOverlay">
+        <video id="introVideo" autoplay muted playsinline>
+            <source src="intro.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="content">
+        
+        <!-- PALABRA 1 -->
+        <div class="word">
+            <h2>Incubadora</h2>
+            <h2>Incubadora</h2>
+        </div>
+
+        <!-- PALABRA 2 -->
+        <div class="word">
+            <h2>de</h2>
+            <h2>de</h2>
+        </div>
+
+        <!-- PALABRA 3 -->
+        <div class="word">
+            <h2>Tortugas</h2>
+            <h2>Tortugas</h2>
+        </div>
+
+        <a href="pagina2.html" class="btn-neon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            INICIO
+        </a>
+
+        <script>
+            const overlay = document.getElementById('introOverlay');
+            const video = document.getElementById('introVideo');
+
+            // Cuando el video termina, ejecutamos la función
+            video.onended = function() {
+                // 1. Agregamos la clase que baja la opacidad a 0
+                overlay.classList.add('fade-out');
+                
+                // 2. Esperamos 1 segundo (lo que dura la transición) y borramos el div del HTML
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 1000);
+            };
+        </script>
+
+    </div> 
+
+    <div class="side-right">
+        <img src="tortuga4.png" class="turtle-img" alt="Tortuga Marina">
+    </div>
+
+</body>
+</html>

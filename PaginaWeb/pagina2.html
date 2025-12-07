@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+    </head>
+<body>
+
+    <div class="titulo-agua">
+        <div class="word">
+            <h2>Panel</h2>
+            <h2>Panel</h2>
+        </div>
+        <div class="word">
+            <h2>de</h2>
+            <h2>de</h2>
+        </div>
+        <div class="word">
+            <h2>Control</h2>
+            <h2>Control</h2>
+        </div>
+    </div>
+
+    <div class="tablero">
+        <div class="grupo-vertical">
+            <div id="c1" class="circulo c-gris"></div>
+            <div id="c2" class="circulo c-gris"></div>
+        </div>
+
+        <div class="grupo-cuadrado">
+            <div id="c3" class="circulo c-gris"></div>
+            <div id="c4" class="circulo c-gris"></div>
+            <div id="c5" class="circulo c-gris"></div>
+            <div id="c6" class="circulo c-gris"></div>
+        </div>
+
+        <div class="grupo-cuadrado">
+            <div id="c7" class="circulo c-gris"></div>
+            <div id="c8" class="circulo c-gris"></div>
+            <div id="c9" class="circulo c-gris"></div>
+            <div id="c10" class="circulo c-gris"></div>
+        </div>
+    </div>
+
+    <div class="contenedor-botones">
+        <button class="btn-neon" onclick="activarAutomatico()">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            AUTOMÁTICO
+        </button>
+
+        <a href="pagina3.html" class="btn-neon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            MANUAL
+        </a>
+
+        <a href="https://docs.google.com/spreadsheets/d/12UQ9h8TqpYO6ImsLQzr6-_rSdpfSNx96pdOr0kG0ms8/edit?usp=sharing" target="_blank" class="btn-neon">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            REGISTROS
+        </a>
+    </div>
+
+    <div class="contenedor-volver">
+        <button class="glow-on-hover" onclick="location.href='index.html'">
+            VOLVER
+        </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
