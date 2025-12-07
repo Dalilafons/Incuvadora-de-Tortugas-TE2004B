@@ -1,4 +1,5 @@
 # 🐢 Tec Robotics: Incubadora Inteligente de Tortugas 
+![Logo Tec Robotics](Logo.png)
 
 Este repositorio contiene la documentación final y el código fuente del proyecto **"Incubadora de Tortugas"**. Desarrollado como parte de la materia "Diseño de sistemas embebidos avanzados" (Gpo 601) del Tecnológico de Monterrey, este prototipo busca mitigar los efectos del cambio climático y el saqueo furtivo en la tortuga Golfina (*Lepidochelys olivacea*).
 
